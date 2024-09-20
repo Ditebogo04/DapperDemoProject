@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DapperMVCDemo.Data.Models.Domain.Person>
+@{
+    ViewData["Title"] = "DisplayAll";
+}
+
+<h1>List of People</h1>
+
+
+<div class="my-2">
+    @* <a href="/Person/Add" class="btn btn-info my-2">Add more</a> *@
+
+    <a asp-action="Add" class="btn btn-info my-2">Add more</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in Model)
+            {
+                <tr>
+                    <td>@person.Name</td>
+                    <td>@person.Email</td>
+                    <td>@person.Address</td>
+                    <td>
+                        <a href="/Person/Edit?id=@person.ID" class="btn btn-success">Edit</a>
+                        <a href="/Person/Delete?id=@person.ID" class="btn btn-danger" onclick="return window.confirm('Are you sure to delete this record?')" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
